@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -55,7 +56,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'templates',
+            BASE_DIR / 'myapp/templates',
             ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -77,8 +78,12 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME':   'djangodb_test1',
+        'USER': 'root',
+        'PASSWORD': 'Animalsm65',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
@@ -116,8 +121,20 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
+import os
+from pathlib import Path
 
-STATIC_URL = 'static/'
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+STATIC_URL = '/static/'
+
+# Remove incorrect STATICFILES_DIRS and use this instead
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'myapp', 'static'),  # Adjust this if your app name is different
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Where collectstatic will store files
+  # Ensure BASE_DIR is imported
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

@@ -1,0 +1,15 @@
+{% extends "admin/base.html" %}
+{% load static %} 
+{% block extrahead %} <script src="{% static 'admin_custom.js' %}"></script> {% endblock %}
+{% block title %}My Custom Admin Panel{% endblock %}
+
+{% block branding %}
+    <h1 style="color: blue;">Welcome to My Custom Admin Panel</h1>
+{% endblock %}
+
+{% block extrastyle %}
+    <style>
+        body { background-color: #f4f4f4; }
+        .module h2 { color: red; }
+    </style>
+{% endblock %}
